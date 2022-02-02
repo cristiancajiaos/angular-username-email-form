@@ -3,7 +3,7 @@
     <div class="col-12 col-lg-4 offset-lg-4">
       <div class="card">
         <div class="card-body">
-          <form [formGroup]="myForm">
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
             <div class="form-group mb-2">
               <label for="username">Username</label>
               <div class="input-group">
