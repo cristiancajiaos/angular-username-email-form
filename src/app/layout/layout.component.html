@@ -3,14 +3,18 @@
     <div class="col-12 col-lg-4 offset-lg-4">
       <div class="card">
         <div class="card-body">
-          <form>
+          <form [formGroup]="myForm">
             <div class="form-group mb-2">
               <label for="username">Username</label>
               <div class="input-group">
                 <label class="input-group-text" for="username">
                   <i class="fas fa-user fa-fw"></i>
                 </label>
-                <input type="text" class="form-control" id="username" name="username"/>
+                <input type="text" class="form-control"
+                  id="username" name="username" formControlName="username"/>
+              </div>
+              <div *ngIf="isFieldInvalid('username')" class="text-danger">
+                <p *ngIf="isFieldRequiredError('username')">Field is required</p>
               </div>
             </div>
             <div class="form-group mb-2">
@@ -19,11 +23,16 @@
                 <label class="input-group-text" for="email">
                   <i class="fas fa-envelope fa-fw"></i>
                 </label>
-                <input type="email" class="form-control" id="email" name="email"/>
+                <input type="email" class="form-control"
+                  id="email" name="email" formControlName="email"/>
+              </div>
+              <div *ngIf="isFieldInvalid('email')" class="text-danger">
+                <p *ngIf="isFieldRequiredError('email')">Field is required</p>
+                <p *ngIf="isFieldEmailError()">Email is not valid</p>
               </div>
             </div>
             <div class="d-grid">
-              <button class="btn btn-success">
+              <button class="btn btn-success" [disabled]="myForm.invalid">
                 <i class="fas fa-plus fa-fw"></i> Add user
               </button>
             </div>
